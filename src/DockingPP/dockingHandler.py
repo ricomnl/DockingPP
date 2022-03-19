@@ -299,7 +299,6 @@ class DockingHandler:
         """
         if type_score == "all": 
             scores_to_write = self.freq.available_scores
-
         else:
             if not type_score in self.freq.available_scores:
                 raise error.InvalidScore(f"{type_score} score is not valid")
@@ -310,10 +309,10 @@ class DockingHandler:
             raise error.RescoringNotComputed("Poses has not been rescored, call rescorePoses")
 
         o = open(output_file, "w")
-        o.write(f"#Rescoring of {self._nb_rescored_poses} poses with frequencies computed on {self.freq.nb_poses_used} poses.\n")
-        o.write("#Pose\t" + "\t".join(scores_to_write) + "\n")
+        # o.write(f"#Rescoring of {self._nb_rescored_poses} poses with frequencies computed on {self.freq.nb_poses_used} poses.\n")
+        o.write("\t".join(["#Pose"]+list(scores_to_write.keys()))+"\n")
         for p in self.rescored_poses:
-            o.write(f"{p.index}{p.serializeScores(scores_to_write)}\n")
+            o.write("\t".join([str(i) for i in [p.index]+p.serializeScores(scores_to_write)])+"\n")
         o.close()
         logging.info(f"Scores writes to {output_file}")        
 

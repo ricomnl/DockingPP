@@ -83,10 +83,10 @@ class Pose :
             str: Str representation of scores, "\t" separated, in the order given in scores attributes.
 
         """
-        serialized = ""
+        serialized = []
         for sc in scores: 
             try:
-                serialized += f"\t{self.rescoring[sc]}"
+                serialized.append(self.rescoring[sc])
             except KeyError:
                 raise error.InvalidScore(f"{sc} score is invalid or not computed")
         

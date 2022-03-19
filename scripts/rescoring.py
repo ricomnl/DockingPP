@@ -36,7 +36,7 @@ def args_gestion():
             err += f"{folder} is not a directory\n"
 
     if not os.path.isdir(args["--output"]):
-       os.mkdir(args["--output"]) 
+        os.mkdir(args["--output"]) 
     else:
         logging.warn(f'--output : {args["--output"]} already exists')
     
@@ -62,7 +62,7 @@ if __name__ == "__main__":
     #THINK ABOUT THAT, WE NEED TO FIX SUFFIX AND WRITE IN DOC
     ligand_suffix = "_l_u.pdb" 
     receptor_suffix = "_r_u.pdb"
-    results_suffix = ".zd3.0.2.fg.fixed.out"
+    results_suffix = ".out"
     
     max_poses = max(ARGS["--nb_rescoring"], ARGS["--nb_frequencies"]) # Use the maximum number of poses to load zdock results and compute contact map
 
